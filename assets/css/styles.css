@@ -1,19 +1,19 @@
 /* Jai Jwala Contracts - Corporate Static Site Styles */
 :root{
-  --blue:#004B8D;
-  --accent:#FF6B35;
-  --secondary:#4ECDC4;
-  --purple:#6C5CE7;
+  --blue:#003D6B;
+  --accent:#E85D2C;
+  --secondary:#2E7D74;
+  --purple:#5A4A8A;
   --white:#FFFFFF;
   --grey:#F8F9FA;
   --dark:#1C1C1C;
   --text:#2b2b2b;
   --muted:#6b6f76;
   --container:1200px;
-  --gradient-1:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-2:linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --gradient-3:linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  --gradient-4:linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  --gradient-1:linear-gradient(135deg, #2E7D74 0%, #1A5490 100%);
+  --gradient-2:linear-gradient(135deg, #8B5A3C 0%, #6B4423 100%);
+  --gradient-3:linear-gradient(135deg, #4A6FA5 0%, #2C5282 100%);
+  --gradient-4:linear-gradient(135deg, #3D6B5E 0%, #2F5233 100%);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -77,9 +77,9 @@ a{color:inherit;text-decoration:none}
   right: 0;
   bottom: 0;
   background-image: 
-    radial-gradient(circle at 20% 80%, rgba(255,107,53,0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(78,205,196,0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(108,92,231,0.1) 0%, transparent 50%);
+    radial-gradient(circle at 20% 80%, rgba(46,125,116,0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139,90,60,0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(90,74,138,0.03) 0%, transparent 50%);
   animation: float 20s ease-in-out infinite;
   z-index: 1;
 }
@@ -138,11 +138,11 @@ a{color:inherit;text-decoration:none}
   background:linear-gradient(135deg, var(--accent) 0%, var(--blue) 100%);
   color:#fff;
   border:2px solid transparent;
-  box-shadow:0 4px 15px rgba(255,107,53,0.3);
+  box-shadow:0 2px 8px rgba(46,125,116,0.2);
 }
 .btn-primary:hover{
-  transform:translateY(-3px) scale(1.05);
-  box-shadow:0 8px 25px rgba(255,107,53,0.4);
+  transform:translateY(-2px) scale(1.02);
+  box-shadow:0 4px 16px rgba(46,125,116,0.25);
 }
 .scroll-down{
   position:absolute;
@@ -169,13 +169,13 @@ a{color:inherit;text-decoration:none}
 /* Highlights */
 .highlights{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
 .highlight-card{
-  background:linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-  border:2px solid rgba(255,255,255,0.2);
-  backdrop-filter:blur(10px);
+  background:linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter:blur(8px);
   border-radius:16px;
   padding:24px;
   text-align:center;
-  transition:all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition:all 0.3s ease;
   cursor:pointer;
   position:relative;
   overflow:hidden;
@@ -187,7 +187,7 @@ a{color:inherit;text-decoration:none}
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  background: linear-gradient(45deg, transparent, rgba(46,125,116,0.05), transparent);
   transform: rotate(45deg);
   transition: all 0.6s ease;
   opacity: 0;
@@ -197,25 +197,25 @@ a{color:inherit;text-decoration:none}
   transform: rotate(45deg) translate(50%, 50%);
 }
 .highlight-card:hover {
-  transform: translateY(-8px) scale(1.05);
+  transform: translateY(-6px) scale(1.02);
   border-color: var(--accent);
-  box-shadow: 0 20px 40px rgba(255,107,53,0.2);
+  box-shadow: 0 12px 24px rgba(46,125,116,0.15);
 }
 .highlight-number{
-  font-size:38px;
+  font-size:36px;
   font-weight:700;
-  background: linear-gradient(135deg, #ffffff, #f0f0f0);
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom:8px;
 }
 .highlight-label{
-  opacity:0.95;
+  opacity:0.9;
   font-weight:500;
   font-size:14px;
   text-transform:uppercase;
-  letter-spacing:1px;
+  letter-spacing:0.5px;
 }
 
 /* Grids */
@@ -261,16 +261,16 @@ a{color:inherit;text-decoration:none}
   opacity: 0.05;
 }
 .service-card:hover{
-  transform:translateY(-8px) scale(1.02);
-  box-shadow:0 20px 40px rgba(0,0,0,.12);
+  transform:translateY(-6px) scale(1.01);
+  box-shadow:0 16px 32px rgba(0,0,0,.1);
   border-color: var(--accent);
 }
 .service-card:hover .icon {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.05) rotate(2deg);
 }
 .service-card:hover h3 {
   color: var(--accent);
-  transform: translateX(4px);
+  transform: translateX(2px);
 }
 .service-card > * {
   position: relative;
@@ -359,16 +359,16 @@ a{color:inherit;text-decoration:none}
   transform: translateX(0) scale(1);
 }
 .project-card:hover{
-  transform:translateY(-12px) scale(1.03);
-  box-shadow:0 30px 60px rgba(0,0,0,.2);
+  transform:translateY(-8px) scale(1.01);
+  box-shadow:0 20px 40px rgba(0,0,0,.15);
   border-color: var(--accent);
 }
 .project-card:hover .project-media {
-  transform: scale(1.08);
+  transform: scale(1.03);
 }
 .project-card:hover .project-body h3 {
   color: var(--accent);
-  transform: translateX(8px);
+  transform: translateX(4px);
 }
 .project-media{
   height:220px;
