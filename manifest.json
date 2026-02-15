@@ -1,0 +1,25 @@
+{
+  "name": "Jai Jwala Contracts",
+  "short_name": "JJC",
+  "description": "Trusted infrastructure and contracting company in India delivering civil and infrastructure projects with engineering excellence.",
+  "icons": [
+    {
+      "src": "https://github.com/shoryavyas01/jjc-website/raw/main/assets/img/jjc-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://github.com/shoryavyas01/jjc-website/raw/main/assets/img/jjc-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "https://jaijwalacontracts.in/",
+  "display": "standalone",
+  "theme_color": "#003D6B",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity", "utilities"]
+}

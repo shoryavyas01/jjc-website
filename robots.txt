@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jaijwalacontracts.in/sitemap.xml
+
+# Allow search engines to find logo and brand assets
+Allow: /assets/img/
+Allow: /assets/css/
+Allow: /assets/js/
+
+# Block unnecessary files
+Disallow: /assets/
+Disallow: /.git/

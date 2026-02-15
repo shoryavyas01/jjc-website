@@ -40,6 +40,15 @@
   <meta name="msapplication-TileImage" content="https://github.com/shoryavyas01/jjc-website/raw/main/assets/img/jjc-logo.png" />
   <meta name="msapplication-TileColor" content="#003D6B" />
 
+  <!-- Web App Manifest for PWA -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Additional SEO for Google Brand Recognition -->
+  <meta name="application-name" content="Jai Jwala Contracts" />
+  <meta name="msapplication-tooltip" content="Jai Jwala Contracts - Infrastructure & Construction" />
+  <meta name="apple-mobile-web-app-title" content="JJC" />
+  <meta name="theme-color" content="#003D6B" />
+
   <!-- Structured Data for Google Knowledge Panel -->
   <script type="application/ld+json">
   {
@@ -48,7 +57,13 @@
     "name": "Jai Jwala Contracts",
     "alternateName": "JJC",
     "url": "https://jaijwalacontracts.in/",
-    "logo": "https://github.com/shoryavyas01/jjc-website/raw/main/assets/img/jjc-logo.png",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://github.com/shoryavyas01/jjc-website/raw/main/assets/img/jjc-logo.png",
+      "width": 400,
+      "height": 400,
+      "caption": "Jai Jwala Contracts Logo"
+    },
     "description": "Jai Jwala Contracts is a trusted infrastructure and contracting company in India delivering civil and infrastructure projects with engineering excellence, safety, and integrity.",
     "foundingDate": "1985",
     "areaServed": "India",
@@ -64,7 +79,8 @@
       "@type": "ContactPoint",
       "telephone": "+91 98294 22021",
       "contactType": "customer service",
-      "email": "jaijwalacontracts@gmail.com"
+      "email": "jaijwalacontracts@gmail.com",
+      "availableLanguage": ["English", "Hindi"]
     },
     "sameAs": [
       "https://www.facebook.com/p/JAI-JWALA-CONTRACTS-AACLASS-PWD-B-CLASS-MES-CONTRACTOR-100066449932322/",
@@ -76,7 +92,13 @@
       "Road Construction",
       "Highway Construction",
       "Infrastructure Development"
-    ]
+    ],
+    "keywords": "infrastructure, contracting, construction, civil engineering, Rajasthan, India, road construction, aggregates",
+    "brand": {
+      "@type": "Brand",
+      "name": "Jai Jwala Contracts",
+      "logo": "https://github.com/shoryavyas01/jjc-website/raw/main/assets/img/jjc-logo.png"
+    }
   }
   </script>
 
