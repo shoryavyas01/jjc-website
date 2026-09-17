@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hero Image Test</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; }
+        .hero-test {
+            width: 100vw;
+            height: 100vh;
+            background: url('images/hero-section-stone-crusher.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .overlay {
+            background: rgba(0,0,0,0.5);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-test">
+        <div class="overlay">
+            <h1>Hero Image Test</h1>
+            <p>If you see the background image, the path is correct.</p>
+            <p>Current time: <span id="time"></span></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('time').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>
