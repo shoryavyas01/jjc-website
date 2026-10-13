@@ -1,0 +1,12 @@
+{
+  "name": "jai-jwala-contracts-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static website for Jai Jwala Contracts",
+  "scripts": {
+    "test": "python tests/check_site.py && node tests/interactions.cjs"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  }
+}
