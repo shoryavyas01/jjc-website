@@ -1,162 +1,147 @@
-// Jai Jwala Contracts - Interactions
-(function(){
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* Jai Jwala Contracts — progressive enhancement, no runtime dependencies. */
+(() => {
+  "use strict";
+  document.documentElement.classList.add("js");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const toggle = document.querySelector(".nav-toggle");
+  const menu = document.getElementById("primary-menu");
+  function closeMenu() {
+    menu?.classList.remove("open");
+    toggle?.setAttribute("aria-expanded", "false");
+    toggle?.setAttribute("aria-label", "Open navigation");
+  }
+  toggle?.addEventListener("click", () => {
+    const open = menu.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute(
+      "aria-label",
+      open ? "Close navigation" : "Open navigation",
+    );
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menu?.classList.contains("open")) {
+      closeMenu();
+      toggle.focus();
+    }
+  });
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".site-header")) closeMenu();
+  });
+  menu
+    ?.querySelectorAll("a")
+    .forEach((link) => link.addEventListener("click", closeMenu));
+  window.matchMedia("(min-width: 901px)").addEventListener("change", closeMenu);
+  document.querySelectorAll("[data-year]").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
 
-  // Mobile nav toggle
-  const navToggle = document.querySelector('.nav-toggle');
-  const menu = document.getElementById('primary-menu');
-  if(navToggle && menu){
-    navToggle.addEventListener('click', ()=>{
-      const open = menu.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', String(open));
+  if (!reducedMotion.matches && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("waiting");
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08 },
+    );
+    document.querySelectorAll(".reveal").forEach((el) => {
+      el.classList.add("waiting");
+      observer.observe(el);
     });
-  }
-
-  // Intersection Observer for fade-up elements
-  const io = (!prefersReduced && 'IntersectionObserver' in window) ? new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.classList.add('in-view');
-        io.unobserve(e.target);
-      }
-    })
-  },{threshold:0.15}) : null;
-
-  document.querySelectorAll('.fade-up').forEach(el=>{
-    if(io){io.observe(el)} else {el.classList.add('in-view')}
-  });
-
-  // Counters
-  function animateCounter(el){
-    const target = parseInt(el.getAttribute('target')||'0',10);
-    const suffix = el.getAttribute('data-suffix') || '';
-    const duration = 1200;
-    const start = Date.now();
-    const from = 0;
-    // Reset to 0 before animation
-    el.textContent = '0' + suffix;
-    function tick(){
-      const p = Math.min(1, (Date.now()-start)/duration);
-      const eased = 1 - Math.pow(1-p, 3);
-      const val = Math.floor(from + (target-from)*eased);
-      el.textContent = val.toString() + suffix;
-      if(p<1) requestAnimationFrame(tick);
-    }
-    tick();
-  }
-
-  const counters = document.querySelectorAll('[data-counter]');
-  counters.forEach(el=>{
-    if(io){
-      io.observe(el);
-      // run on view only
-      const obs = new IntersectionObserver(es=>{
-        es.forEach(x=>{ if(x.isIntersecting){ animateCounter(el); obs.disconnect(); } });
-      },{threshold:0.6});
-      obs.observe(el);
-    } else {
-      animateCounter(el);
-    }
-  });
-
-  // Project filters
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.project-card');
-  filterButtons.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      filterButtons.forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      const f = btn.getAttribute('data-filter');
-      cards.forEach(c=>{
-        const show = f==='all' || c.getAttribute('data-category')===f;
-        c.style.display = show ? '' : 'none';
-      })
-    })
-  });
-
-  // Sticky header shadow on scroll
-  const header = document.querySelector('.site-header');
-  let last = 0;
-  window.addEventListener('scroll',()=>{
-    const y = window.scrollY || window.pageYOffset;
-    if(header){ header.style.boxShadow = y>8 ? '0 6px 18px rgba(0,0,0,.06)' : 'none'; }
-    last = y;
-  },{passive:true});
-
-  // Smooth scrolling for anchor links (if any remain on page)
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
-      if (href === '#' || href === '#top') {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    reducedMotion.addEventListener("change", () => {
+      if (reducedMotion.matches) {
+        observer.disconnect();
+        document
+          .querySelectorAll(".waiting")
+          .forEach((el) => el.classList.remove("waiting"));
       }
     });
-  });
-
-  // Hero slideshow
-  const slides = document.querySelectorAll('.hero-slideshow .slide');
-  if(slides.length > 1){
-    let currentSlide = 0;
-    function nextSlide(){
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add('active');
-    }
-    setInterval(nextSlide, 4000); // Change slide every 4 seconds
   }
 
-  // Contact form submission
-  const contactForm = document.querySelector('.contact-form');
-  if(contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Validate form
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      
-      if(!name || !email || !message) {
-        const formNote = document.querySelector('.form-note');
-        formNote.textContent = '❌ Please fill in all required fields.';
-        formNote.style.color = '#dc3545';
-        formNote.style.fontWeight = '600';
+  const cards = [...document.querySelectorAll(".project-card")];
+  const filters = [...document.querySelectorAll(".filter-btn")];
+  filters.forEach((button) =>
+    button.addEventListener("click", () => {
+      filters.forEach((filter) => {
+        const selected = filter === button;
+        filter.classList.toggle("active", selected);
+        filter.setAttribute("aria-pressed", String(selected));
+      });
+      let count = 0;
+      cards.forEach((card) => {
+        card.hidden =
+          button.dataset.filter !== "all" &&
+          card.dataset.category !== button.dataset.filter;
+        if (!card.hidden) count++;
+      });
+      document.getElementById("project-count").textContent =
+        `${count} featured ${count === 1 ? "work" : "works"}`;
+    }),
+  );
+
+  const form = document.querySelector(".contact-form");
+  if (!form) return;
+  const service = document.getElementById("service");
+  const requestedService = new URLSearchParams(window.location.search).get(
+    "service",
+  );
+  if ([...service.options].some((option) => option.value === requestedService))
+    service.value = requestedService;
+  let sending = false;
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (sending || !form.reportValidity()) return;
+    const note = form.querySelector(".form-note");
+    const fallback = form.querySelector(".form-fallback");
+    const button = form.querySelector("button[type=submit]");
+    const originalButton = button.innerHTML;
+    for (const id of ["name", "email", "message"]) {
+      const field = document.getElementById(id);
+      if (!field.value.trim()) {
+        note.textContent = "Please complete all required fields.";
+        note.className = "form-note error";
+        field.focus();
         return;
       }
-      
-      // Show confirmation message
-      const formNote = document.querySelector('.form-note');
-      formNote.textContent = '✅ Message sent successfully! We\'ll respond within 24 hours.';
-      formNote.style.color = '#28a745';
-      formNote.style.fontWeight = '600';
-      
-      // Get form data
-      const formData = new FormData(this);
-      
-      // Submit to Formspree using fetch
-      fetch('https://formspree.io/f/mzzoddlb', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => {
-        if (response.ok) {
-          // Success - keep confirmation message
-          this.reset();
-        } else {
-          // Error - show error message
-          formNote.textContent = '❌ Something went wrong. Please try again.';
-          formNote.style.color = '#dc3545';
-        }
-      })
-      .catch(error => {
-        // Network error
-        formNote.textContent = '❌ Network error. Please try again.';
-        formNote.style.color = '#dc3545';
+    }
+    if (document.getElementById("website").value) return;
+    sending = true;
+    button.disabled = true;
+    button.textContent = "Sending enquiry…";
+    form.setAttribute("aria-busy", "true");
+    note.className = "form-note";
+    note.textContent = "Sending your enquiry. Please wait.";
+    fallback.hidden = true;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+        signal: controller.signal,
       });
-    });
-  }
+      if (!response.ok) throw new Error("Submission was not accepted");
+      note.textContent = "Thank you. Your enquiry has been sent to our team.";
+      note.className = "form-note success";
+      form.reset();
+    } catch (error) {
+      note.textContent =
+        error.name === "AbortError"
+          ? "The connection timed out. Delivery could not be confirmed. Please contact us directly or try again."
+          : "We could not confirm delivery. Your details are still here. Please try again or contact us directly.";
+      note.className = "form-note error";
+      fallback.hidden = false;
+    } finally {
+      clearTimeout(timeout);
+      sending = false;
+      button.disabled = false;
+      button.innerHTML = originalButton;
+      form.removeAttribute("aria-busy");
+    }
+  });
 })();

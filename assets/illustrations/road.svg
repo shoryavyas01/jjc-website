@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 760" fill="none">
+  <defs>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0V50" stroke="#d9cbb0" stroke-opacity=".08"/>
+    </pattern>
+    <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0" stroke="#9d8a66" stroke-opacity=".25"/>
+    </pattern>
+  </defs>
+  <rect width="1000" height="760" fill="#142d35"/>
+  <rect width="1000" height="760" fill="url(#grid)"/>
+  <circle cx="720" cy="200" r="105" fill="#d7ac61"/>
+  <circle cx="720" cy="200" r="131" stroke="#d7ac61" stroke-opacity=".35"/>
+  <path d="M0 380Q220 220 440 380T1000 330V760H0Z" fill="#5c685d"/>
+  <path d="M0 430Q220 345 450 435T1000 400V760H0Z" fill="#b7a17b"/>
+  <path d="M0 505Q220 390 450 500T1000 460V760H0Z" fill="#d4bc91"/>
+  <path d="M580 398C560 462 740 465 678 535S530 630 450 760H1000C760 630 845 564 779 502S637 455 630 398Z" fill="#213a40"/>
+  <path d="M581 398C560 460 740 465 678 535S530 630 450 760M630 398C637 455 713 442 779 502S760 630 1000 760" stroke="#e9d6af" stroke-width="4"/>
+  <path d="M605 405C600 458 796 485 728 551S650 685 721 760" stroke="#d7ac61" stroke-width="6" stroke-dasharray="28 24"/>
+  <g stroke="#826e51" stroke-width="2">
+    <path d="M0 560Q130 510 300 550M0 580Q140 530 320 570M20 635Q180 575 370 635M20 655Q180 600 370 655M780 410Q875 375 1000 410M800 432Q900 400 1000 430"/>
+  </g>
+  <g transform="translate(243 437)">
+    <path d="M0 10V-75Q15-105 30-75V10M-35-38H64M-26-58H52" stroke="#334d48" stroke-width="8"/>
+    <path d="M15-53Q-2-54-20-77M15-53Q35-55 46-82" stroke="#334d48" stroke-width="7"/>
+  </g>
+  <g transform="translate(810 524)">
+    <path d="M0 0L60 20V65H0Z" fill="#e0ab4c"/>
+    <path d="M2-24H40V8L2 0Z" fill="#c58c36"/>
+    <path d="M8-19H35V3L8-4Z" fill="#294950"/>
+    <circle cx="10" cy="62" r="15" fill="#182b30"/>
+    <circle cx="53" cy="73" r="17" fill="#182b30"/>
+    <circle cx="10" cy="62" r="7" stroke="#a4997f" stroke-width="2"/>
+    <circle cx="53" cy="73" r="8" stroke="#a4997f" stroke-width="2"/>
+  </g>
+  <g stroke="#dfd0b0" stroke-opacity=".5">
+    <path d="M54 65H114M84 35V95M875 650H935M905 620V680"/>
+  </g>
+  <text x="48" y="712" font-family="monospace" font-size="14" fill="#e9d6af" letter-spacing="3">POKARAN / RAJASTHAN</text>
+</svg>
