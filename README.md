@@ -1,38 +1,37 @@
 # Jai Jwala Contracts
 
-A static, multi-page business website for Jai Jwala Contracts in Pokaran, Rajasthan. No build step or runtime dependencies are required.
+Static multi-page website for Jai Jwala Contracts, Pokaran, Rajasthan. No build step or runtime JavaScript dependencies.
 
-## Preview
+## Preview and tests
 
-Run `python -m http.server 8000` from this directory and open `http://localhost:8000`.
+Run `python -m http.server 8000` and open `http://localhost:8000`.
 
-## Design and content
+Run `npm ci` and `npm test` (Python 3 and Node.js required). Tests validate internal resources and anchors, heading structure, structured data, navigation, project filters, service prefilling, and mocked enquiry submission states. No real enquiries are sent.
 
-The road emblem is redrawn as a clean vector mark while retaining the original blue-and-gold identity. The design uses ink blue, sandstone, and brass, with system sans-serif type and a Georgia serif accent. The original SVG illustrations in `assets/illustrations/` depict roadworks, a quarry, a railway materials yard, and a site engineer. They are illustrations, not photographs of completed projects. Existing photos remain in `images/` but are not used by the redesigned pages.
+## Design
 
-Project names, founding year, location, and business contact details are retained from the original repository. Headline statistics and the broken flyover entry have been removed. Confirm business information with the owner before adding new claims, client logos, registrations, or project metrics.
+Deep navy, white, restrained gold accents, clear sans-serif typography, and real construction photography. Motion is limited to a short hero entrance, scroll reveals, and small hover transitions. Reduced-motion preferences are respected. The former illustrations, caricature, decorative stamps, and repeated slogans are removed.
+
+Project scopes are shown without stock photos beside named projects, avoiding the impression that stock photography documents the company's own work. Founding year, project names, location, and contact details are retained from the original repository; new business metrics and certifications are not invented.
+
+## Photography
+
+Pexels photography is hosted on its image CDN. These photos are representative service imagery, not Jai Jwala project photos. Their source pages describe them as free to use:
+
+- [Quarry equipment, photo 14484391](https://www.pexels.com/photo/heavy-machinery-in-a-quarry-site-14484391/)
+- [Road construction, David McElwee, photo 12228684](https://www.pexels.com/photo/construction-machineries-on-side-of-the-road-12228684/)
+- [Excavator, photo 12230651](https://www.pexels.com/photo/a-yellow-and-black-excavator-on-concrete-road-with-soil-and-rocks-12230651/)
+
+The image URLs are explicit and versioned by photo ID. All photographic elements use `referrerpolicy="no-referrer"`; below-fold images load lazily. The original repository photos are retained in Git but are not displayed. Photo hosting relies on Pexels availability; replace with owner-approved, locally hosted company photography when available.
 
 ## Interactions
 
-- Responsive navigation with Escape and outside-click dismissal; navigation remains available without JavaScript.
-- Scroll reveals and entrance transitions that respect reduced-motion preferences.
-- Project category filters and expandable work scopes.
-- Service links prefill the enquiry form.
-- Contact form validation, sending state, confirmed success, timeout and failure recovery. The existing Formspree endpoint is retained. Success appears only after an HTTP success response. Enquiry content is retained on failure.
-- Native form submission remains available without JavaScript.
+Responsive navigation supports Escape, outside-click dismissal, and operation without JavaScript. Project categories use accessible pressed states and a live result count. Native work-scope details and service jump links need no runtime dependency. Service and project enquiries prefill the contact form.
 
-## Deployment
+The existing Formspree endpoint is retained. Validation, duplicate prevention, sending status, confirmed success, timeout and failure recovery remain in place. Details are preserved on failures. The native form also works without JavaScript.
 
-Publish the repository root as a static site. `netlify.toml` preserves security headers and serves the custom 404 with HTTP 404 status for unmatched requests. Other static hosts should configure their own 404 behavior. Keep the existing domain `jaijwalacontracts.in`; the canonical URLs and sitemap use it.
+## Deployment and maintenance
 
-## Verification
+Publish the repository root. Netlify serves `404.html` with HTTP 404 for unmatched routes. Canonical URLs and sitemap use `jaijwalacontracts.in`.
 
-Run `npm ci` and `npm test` (Python 3 and Node.js required). Tests check internal resources and anchors, SVG XML, structured data, navigation, filters, service prefilling, invalid submissions, duplicate prevention, and mocked success/failure states. No real enquiries are sent. These DOM tests do not replace visual browser checks.
-
-## Maintenance
-
-Shared styling and behavior live in `assets/css/styles.css` and `assets/js/main.js`. The header and footer are static HTML on each page: apply shared changes to all eight pages. The copyright year updates in JavaScript. The legal policy wording is preserved from the original site.
-
-## Design references
-
-Research references: [Turner Construction](https://www.turnerconstruction.com/), [L&T Construction](https://www.lntecc.com/), and [Mace Construction](https://www.macegroup.com/construction-services/). These informed the emphasis on clear expertise, work categories, and project enquiries. Copy, artwork, and page layouts are original to this redesign.
+Styling: `assets/css/styles.css`. Behavior: `assets/js/main.js`. Apply shared header and footer changes to all eight pages. Existing legal wording is retained.
